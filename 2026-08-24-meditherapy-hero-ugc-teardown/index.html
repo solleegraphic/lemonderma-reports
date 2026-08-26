@@ -80,11 +80,13 @@ code{font-family:var(--mono);font-size:.88em;background:var(--y-bg);padding:1px 
 .badge.lm{background:var(--green);color:#fff}
 .vid-tag{font-size:11px;font-weight:800;letter-spacing:.05em;margin:0 0 5px;color:var(--ink-3)}
 .vid-tag.lm{color:var(--green)}
-.vid-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.vid-pair{display:grid;grid-template-columns:repeat(var(--vc,2),1fr);gap:12px}
 .ad-media.two{position:static}
-.ad-body.two-col{grid-template-columns:614px 1fr}
+.ad-body.two-col{grid-template-columns:var(--mw,614px) 1fr}
 .ad-body>div{min-width:0}
+.vid-tag.cm{color:#8a6d1f}
 @media(max-width:1150px){.ad-body.two-col{grid-template-columns:1fr}}
+.ad-body.two-col.three{--vc:3;--mw:800px}
 
 details.sec{margin:56px 0 0}
 details.sec>summary{list-style:none;cursor:pointer;font-size:21px;font-weight:700;line-height:1.4;
@@ -134,7 +136,7 @@ details.sec[open]>summary{margin-bottom:6px}
     <span class="badge">프레임 145장 해부</span>
     <span class="badge">평균 18.1초 · 9:16</span>
     <span class="badge">심리 레버 8종 추출</span>
-    <span class="badge lm">레몬더마 이식본 8편 수록 — AD1~AD8 전편</span>
+    <span class="badge lm">레몬더마 세럼·크림 이식본 각 8편 수록 — AD1~AD8 전편</span>
   </div>
 </div></header>
 
@@ -268,13 +270,15 @@ details.sec[open]>summary{margin-bottom:6px}
 <!-- ===== AD 1 ===== -->
 <div class="ad-card">
   <div class="ad-head"><h3>#1 — 이마·눈가 주름 (노출 최상위)</h3><div class="ad-meta">lib id 1228512282468053 · 26.6s · 게재 4/12</div></div>
-  <div class="ad-body two-col">
+  <div class="ad-body two-col three">
     <div class="ad-media two">
     <div class="vid-pair">
     <div class="vid-wrap"><div class="vid-tag">원본 — MEDITHERAPY</div>
     <video controls preload="metadata" src="a/meditherapy_ad1_1228512282468053.mp4"></video></div>
     <div class="vid-wrap"><div class="vid-tag lm">레몬더마 이식본 — AD1 · 26초 · 자막·음악 반영</div>
     <video controls preload="metadata" src="a/lemonderma_transplant_ad1_m2.mp4"></video></div>
+    <div class="vid-wrap"><div class="vid-tag cm">레몬더마 크림 이식본 — AD1 · 26초 · 2026-08-26 제작</div>
+    <video controls preload="metadata" src="a/lemonderma_cream_ad1_c1.mp4"></video></div>
     </div>
     <blockquote><span class="who">광고 카피</span>No needles required. Just one drop of this K-beauty secret to erase all my fine lines.
 (Look at the difference!)</blockquote></div>
@@ -421,13 +425,15 @@ distorted audio, muffled audio, static, audio glitches</code></pre>
 <!-- ===== AD 2 ===== -->
 <div class="ad-card">
   <div class="ad-head"><h3>#2 — "한국 보톡스 레티놀" (나이 고백형)</h3><div class="ad-meta">lib id 2147598245781663 · 12.1s · 게재 4/16</div></div>
-  <div class="ad-body two-col">
+  <div class="ad-body two-col three">
     <div class="ad-media two">
     <div class="vid-pair">
     <div class="vid-wrap"><div class="vid-tag">원본 — MEDITHERAPY</div>
     <video controls preload="metadata" src="a/meditherapy_ad2_2147598245781663.mp4"></video></div>
     <div class="vid-wrap"><div class="vid-tag lm">레몬더마 이식본 — AD2 · 12초 · 자막·음악 반영</div>
     <video controls preload="metadata" src="a/lemonderma_transplant_ad2_m1.mp4"></video></div>
+    <div class="vid-wrap"><div class="vid-tag cm">레몬더마 크림 이식본 — AD2 · 12초 · 2026-08-26 제작</div>
+    <video controls preload="metadata" src="a/lemonderma_cream_ad2_c1.mp4"></video></div>
     </div>
     <blockquote><span class="who">영상 내 고정 자막 (12초 내내, 오타 원문 그대로)</span>Started using Korean Botox retinal
 and suddenly llook 20 again
@@ -597,13 +603,15 @@ cut inside a segment, distorted audio, muffled audio, static, audio glitches</co
 <!-- ===== AD 3 ===== -->
 <div class="ad-card">
   <div class="ad-head"><h3>#3 — 다리 다크스팟 (숨김→전시의 서사)</h3><div class="ad-meta">lib id 4268742586774999 · 15.2s · 게재 5/8</div></div>
-  <div class="ad-body two-col">
+  <div class="ad-body two-col three">
     <div class="ad-media two">
     <div class="vid-pair">
     <div class="vid-wrap"><div class="vid-tag">원본 — MEDITHERAPY</div>
     <video controls preload="metadata" src="a/meditherapy_ad3_4268742586774999.mp4"></video></div>
     <div class="vid-wrap"><div class="vid-tag lm">레몬더마 이식본 — AD3 · 15초 · 2026-08-25 제작</div>
     <video controls preload="metadata" src="a/lemonderma_transplant_ad3_m2.mp4"></video></div>
+    <div class="vid-wrap"><div class="vid-tag cm">레몬더마 크림 이식본 — AD3 · 15초 · 2026-08-26 제작</div>
+    <video controls preload="metadata" src="a/lemonderma_cream_ad3_c1.mp4"></video></div>
     </div>
     <blockquote><span class="who">광고 카피</span>Uneven skin tone on your legs? Same. 👀
 Retinal + Niacinamide + Centella work together
@@ -760,13 +768,15 @@ distorted audio, muffled audio, static, audio glitches</code></pre>
 <!-- ===== AD 4 ===== -->
 <div class="ad-card">
   <div class="ad-head"><h3>#4 — 다리·발 건조 (혐오 자극의 정면 사용)</h3><div class="ad-meta">lib id 1350503660334943 · 15.9s · 게재 5/30</div></div>
-  <div class="ad-body two-col">
+  <div class="ad-body two-col three">
     <div class="ad-media two">
     <div class="vid-pair">
     <div class="vid-wrap"><div class="vid-tag">원본 — MEDITHERAPY</div>
     <video controls preload="metadata" src="a/meditherapy_ad4_1350503660334943.mp4"></video></div>
     <div class="vid-wrap"><div class="vid-tag lm">레몬더마 이식본 — AD4 · 15.8초 · 2026-08-25 제작</div>
     <video controls preload="metadata" src="a/lemonderma_transplant_ad4_m1.mp4"></video></div>
+    <div class="vid-wrap"><div class="vid-tag cm">레몬더마 크림 이식본 — AD4 · 16초 · 2026-08-26 제작</div>
+    <video controls preload="metadata" src="a/lemonderma_cream_ad4_c1.mp4"></video></div>
     </div>
     <blockquote><span class="who">광고 카피</span>When your legs are this dry, regular lotion just sits on top.
 Hyaluronic acid goes deeper — pulling moisture in
@@ -906,13 +916,15 @@ segment, distorted audio, muffled audio, static, audio glitches</code></pre>
 <!-- ===== AD 5 ===== -->
 <div class="ad-card">
   <div class="ad-head"><h3>#5 — 얼굴 다크스팟 (14일 계약서형)</h3><div class="ad-meta">lib id 3083559441844485 · 19.2s · 게재 6/18</div></div>
-  <div class="ad-body two-col">
+  <div class="ad-body two-col three">
     <div class="ad-media two">
     <div class="vid-pair">
     <div class="vid-wrap"><div class="vid-tag">원본 — MEDITHERAPY</div>
     <video controls preload="metadata" src="a/meditherapy_ad5_3083559441844485.mp4"></video></div>
     <div class="vid-wrap"><div class="vid-tag lm">레몬더마 이식본 — AD5 · 17.8초 · 자막·음악 반영</div>
     <video controls preload="metadata" src="a/lemonderma_transplant_ad5_m1.mp4"></video></div>
+    <div class="vid-wrap"><div class="vid-tag cm">레몬더마 크림 이식본 — AD5 · 19초 · 2026-08-26 제작</div>
+    <video controls preload="metadata" src="a/lemonderma_cream_ad5_c1.mp4"></video></div>
     </div>
     <blockquote><span class="who">광고 카피</span>Those spots didn't stand a chance.
 Retinal + Niacinamide work together to visibly fade dark spots
@@ -1042,13 +1054,15 @@ audio, muffled audio, static, audio glitches</code></pre>
 <!-- ===== AD 6 ===== -->
 <div class="ad-card">
   <div class="ad-head"><h3>#6 — 허리 튼살 (8초, 증거 없는 신앙고백)</h3><div class="ad-meta">lib id 2010220389578826 · 8.0s · 게재 5/29</div></div>
-  <div class="ad-body two-col">
+  <div class="ad-body two-col three">
     <div class="ad-media two">
     <div class="vid-pair">
     <div class="vid-wrap"><div class="vid-tag">원본 — MEDITHERAPY</div>
     <video controls preload="metadata" src="a/meditherapy_ad6_2010220389578826.mp4"></video></div>
     <div class="vid-wrap"><div class="vid-tag lm">레몬더마 이식본 — AD6 · 10.2초 · 자막·음악 반영</div>
     <video controls preload="metadata" src="a/lemonderma_transplant_ad6_m2.mp4"></video></div>
+    <div class="vid-wrap"><div class="vid-tag cm">레몬더마 크림 이식본 — AD6 · 8초 · 2026-08-26 제작</div>
+    <video controls preload="metadata" src="a/lemonderma_cream_ad6_c1.mp4"></video></div>
     </div>
     <blockquote><span class="who">영상 내 고정 자막</span>want them to be invisible by
 summer so used this
@@ -1069,13 +1083,15 @@ religiouslyyyy</blockquote></div>
 <!-- ===== AD 7 ===== -->
 <div class="ad-card">
   <div class="ad-head"><h3>#7 — 이마 주름, 중년 남성 (부정 유머의 방패)</h3><div class="ad-meta">lib id 1545963117175084 · 16.0s · 게재 6/18</div></div>
-  <div class="ad-body two-col">
+  <div class="ad-body two-col three">
     <div class="ad-media two">
     <div class="vid-pair">
     <div class="vid-wrap"><div class="vid-tag">원본 — MEDITHERAPY</div>
     <video controls preload="metadata" src="a/meditherapy_ad7_1545963117175084.mp4"></video></div>
     <div class="vid-wrap"><div class="vid-tag lm">레몬더마 이식본 — AD7 · 15.9초 · 자막·음악 반영</div>
     <video controls preload="metadata" src="a/lemonderma_transplant_ad7_m1.mp4"></video></div>
+    <div class="vid-wrap"><div class="vid-tag cm">레몬더마 크림 이식본 — AD7 · 16초 · 2026-08-26 제작</div>
+    <video controls preload="metadata" src="a/lemonderma_cream_ad7_c1.mp4"></video></div>
     </div>
     <blockquote><span class="who">영상 훅 자막 + 광고 카피</span>the serum that gives me botox allegations
 
@@ -1099,13 +1115,15 @@ No filter, no tricks — just the serum.
 <!-- ===== AD 8 ===== -->
 <div class="ad-card">
   <div class="ad-head"><h3>#8 — 등 여드름 흉터, 커플 (돌봄의 서사)</h3><div class="ad-meta">lib id 27024091773956501 · 32.1s · 게재 6/18</div></div>
-  <div class="ad-body two-col">
+  <div class="ad-body two-col three">
     <div class="ad-media two">
     <div class="vid-pair">
     <div class="vid-wrap"><div class="vid-tag">원본 — MEDITHERAPY · 32초</div>
     <video controls preload="metadata" src="a/meditherapy_ad8_27024091773956501.mp4"></video></div>
     <div class="vid-wrap"><div class="vid-tag lm">레몬더마 이식본 — AD8 · 12초 축약 · 자막·음악 반영</div>
     <video controls preload="metadata" src="a/lemonderma_transplant_ad8_m2.mp4"></video></div>
+    <div class="vid-wrap"><div class="vid-tag cm">레몬더마 크림 이식본 — AD8 · 15초 · 2026-08-26 제작</div>
+    <video controls preload="metadata" src="a/lemonderma_cream_ad8_c1.mp4"></video></div>
     </div>
     <blockquote><span class="who">광고 카피</span>Pointing them out is one thing.
 Actually doing something about it is another.
