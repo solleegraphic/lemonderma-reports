@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>영상 프롬프트 길이 리서치</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff; --fg:#141414; --muted:#6b6b60; --line:#e7e7dd;
+  --lime:#E6EE7A; --lime-deep:#4b612d; --card:#fefcd0; --card2:#faf9f2;
+  --red:#b3261e; --amber:#8a6d00; --green:#2d6a4f; --blue:#1f5a8a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:"Noto Sans KR","Noto Sans",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
+  letter-spacing:-.04em; line-height:1.7; font-weight:400;
+}
+.wrap{display:flex; max-width:1320px; margin:0 auto; align-items:flex-start}
+nav{
+  position:sticky; top:0; width:224px; flex:0 0 224px; padding:40px 18px 60px 24px;
+  max-height:100vh; overflow-y:auto; font-size:12.8px; border-right:1px solid var(--line);
+}
+nav .navtitle{font-weight:700; font-size:11px; color:var(--muted); letter-spacing:-.01em; margin-bottom:12px; text-transform:uppercase}
+nav a{display:block; color:var(--muted); text-decoration:none; padding:5px 0; line-height:1.4; border-left:2px solid transparent; padding-left:10px; margin-left:-12px}
+nav a:hover{color:var(--fg)}
+nav a.active{color:var(--fg); border-left-color:var(--lime-deep); font-weight:500}
+main{flex:1; min-width:0; padding:40px 40px 100px}
+h1{font-size:27px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.meta{color:var(--muted); font-size:13px; margin-bottom:22px}
+.jump{background:var(--card2); border:1px solid var(--line); border-radius:10px; padding:14px 18px; font-size:14px; margin-bottom:14px}
+.jump a{color:var(--lime-deep); font-weight:700; text-decoration:none}
+.legend{display:flex; gap:14px; flex-wrap:wrap; font-size:12.5px; color:var(--muted); margin-bottom:36px}
+.legend b{font-weight:500}
+h2{font-size:19px; font-weight:800; margin:52px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--lime)}
+h2:first-of-type{margin-top:8px}
+h3{font-size:15px; font-weight:700; margin:28px 0 10px}
+p{margin:0 0 13px; font-size:14.5px}
+.lead{background:var(--card); border:1px solid #d8dba0; border-radius:10px; padding:16px 20px; margin:0 0 24px; font-size:14.5px}
+.lead b{font-weight:700}
+ul,ol{margin:0 0 14px; padding-left:22px; font-size:14.5px}
+li{margin-bottom:6px}
+.badge{display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; letter-spacing:0; margin-right:4px}
+.g-A{background:#e3f0e6; color:var(--green)}
+.g-B{background:#e5eef7; color:var(--blue)}
+.g-C{background:#fbf1d8; color:var(--amber)}
+.g-D{background:#f1e9e9; color:#8a5a5a}
+.dot{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:5px}
+.dot-red{background:var(--red)} .dot-amber{background:var(--amber)} .dot-green{background:var(--green)}
+.tablewrap{overflow-x:auto; margin:12px 0 22px; -webkit-overflow-scrolling:touch; border:1px solid var(--line); border-radius:10px}
+table{border-collapse:collapse; width:100%; min-width:560px; font-size:13.2px}
+th,td{padding:9px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
+th{background:var(--card2); font-weight:700; white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code, .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.6px; background:#f2f1e6; padding:1px 5px; border-radius:4px; letter-spacing:0}
+pre{background:#141414; color:#f0f0e6; border-radius:10px; padding:16px 18px; overflow-x:auto; font-size:12.6px; line-height:1.6; letter-spacing:0; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre .neg{color:#ff9f8f}
+details{background:var(--card2); border:1px solid var(--line); border-radius:10px; padding:2px 16px; margin:10px 0 20px}
+summary{cursor:pointer; font-size:13px; font-weight:700; padding:10px 0; color:var(--lime-deep); list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"▸ "}
+details[open] summary:before{content:"▾ "}
+.quote{border-left:3px solid var(--lime-deep); padding:4px 0 4px 14px; margin:8px 0; color:#3a3a30; font-size:13.5px}
+.src{font-size:11.5px; color:var(--muted); margin-top:2px}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0 22px}
+.box{border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:var(--card2)}
+.box.bad{border-color:#e2c4bf; background:#fbf3f1}
+.box.good{border-color:#c7dcc9; background:#f1f7f1}
+.box h4{margin:0 0 8px; font-size:13.5px}
+.foot{margin-top:60px; padding-top:20px; border-top:1px solid var(--line); font-size:12px; color:var(--muted)}
+.foot a{color:var(--muted)}
+@media (max-width:1000px){
+  .wrap{display:block}
+  nav{position:static; width:auto; max-height:none; border-right:none; border-bottom:1px solid var(--line); padding:20px 20px 16px}
+  main{padding:24px 20px 80px}
+  .grid2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav id="toc">
+  <div class="navtitle">목차</div>
+  <a href="#tldr">결론</a>
+  <a href="#tool">① 우리 도구 스펙</a>
+  <a href="#q1">② 길어서 잘리는가</a>
+  <a href="#q2">③ 모델별 권장 길이</a>
+  <a href="#q3">④ 네거티브 프롬프트</a>
+  <a href="#q5">⑤ 참조 이미지 재서술</a>
+  <a href="#q6">⑥ 멀티샷 구조</a>
+  <a href="#audit">우리 프롬프트 점검</a>
+  <a href="#principles">개선 원칙 5가지</a>
+  <a href="#applied">이미 반영한 것</a>
+  <a href="#sources">출처</a>
+</nav>
+<main>
+
+<h1>영상 프롬프트 길이 리서치</h1>
+<div class="meta">Sol · 2026-09-28 · 시댄스(Seedance) 영상 프롬프트 — "짧아야 잘 나온다"는 말을 실측으로 점검</div>
+
+<div class="jump">
+  👉 바로 할 일: <a href="#principles">개선 원칙 5가지</a>부터 보고, <a href="#applied">검수 에이전트 반영 내역</a>으로 이미 뭐가 자동으로 걸러지는지 확인하세요.
+</div>
+<div class="legend">
+  <span><span class="badge g-A">등급 A</span> 공식 1차 소스 (API 스펙·논문·공식 가이드)</span>
+  <span><span class="badge g-B">등급 B</span> 모델 전용 가이드 (반통제 비교)</span>
+  <span><span class="badge g-C">등급 C</span> 다수 벤더·커뮤니티 일치</span>
+  <span><span class="dot dot-red"></span>확정 문제</span>
+  <span><span class="dot dot-amber"></span>여지 있음</span>
+  <span><span class="dot dot-green"></span>이미 정본과 일치</span>
+</div>
+
+<div class="lead">
+  <b>결론 한 줄:</b> "프롬프트가 길어서 결과가 나쁘다"는 <b>절반만 맞다.</b> 시댄스는 길다고 글자를 잘라 무시하지 않는다 — 진짜 원인은 길어질수록 지시들이 서로 관심(어텐션)을 나눠 먹는 것이다. 그리고 그보다 더 확실한 문제 두 가지를 찾았다: <b>우리가 매번 붙이는 "Negative prompt" 블록이 애초에 작동하는 채널이 아니었고</b>, <b>제작 도구가 이미 지원하는 구조화 멀티샷 기능을 안 쓰고 있었다.</b>
+</div>
+
+<h2 id="tool">① 가장 먼저 확인한 사실 — 우리 도구 스펙 <span class="badge g-A">등급 A</span></h2>
+<p>외부 가이드를 찾기 전에, 우리가 실제로 호출하는 Magnific <span class="mono">video_generate</span> 도구의 스펙을 직접 열어봤다. 이건 외부 블로그보다 신뢰도가 높다 — <b>우리가 실제로 쓰는 API 계약 그 자체</b>이기 때문이다.</p>
+<div class="tablewrap"><table>
+<tr><th>모델</th><th>프롬프트 최대 길이</th><th>네거티브 프롬프트 필드</th><th>멀티샷</th></tr>
+<tr><td><b>Seedance 2.5</b> (우리 정본)</td><td><b>10,000자</b></td><td><b>없음</b></td><td>최대 6샷, 샷당 1~12초</td></tr>
+<tr><td>Seedance 2.0 / Fast / Mini</td><td>40,000자</td><td>없음</td><td>동일</td></tr>
+<tr><td>Seedance 1.5 Pro</td><td>2,500자</td><td>없음</td><td>3샷</td></tr>
+</table></div>
+<p>도구 설명 자체가 "네거티브 프롬프트는 모델이 지원할 때만 쓴다"고 적혀 있는데, <b>시댄스 계열 6개 전부 이 필드가 카탈로그에 없다.</b> 즉 우리가 매번 프롬프트 끝에 붙이는 <span class="mono">Negative prompt: hand, finger, circle...</span> 블록은 별도 채널이 아니라 <b>같은 10,000자 예산 안의 그냥 텍스트</b>다.</p>
+<p>또 하나: <span class="mono">multi_prompt</span>라는 필드로 <b>샷마다 별도 프롬프트·길이를 가진 구조화 멀티샷</b>(최대 6샷)이 이미 지원된다. 우리는 지금까지 이걸 안 쓰고 <span class="mono">0.00-3.00s / 3.00-8.00s...</span>처럼 <b>하나의 문자열 안에 타임코드를 박아 넣는 방식</b>만 써왔다.</p>
+
+<h2 id="q1">② 길어서 잘려 무시되는가? <span class="badge g-A">등급 A</span></h2>
+<p>원래 가설은 "인코더가 앞부분만 읽고 뒷부분은 글자 수만 차지한다"였다. <b>이건 틀렸다.</b></p>
+<details>
+<summary>근거 보기</summary>
+<div class="quote">"a fine-tuned <b>decoder-only LLM</b> as the text encoder" — Seedance 1.0 기술 보고서</div>
+<div class="src">arXiv 2506.09113 · 등급 A</div>
+<p style="margin-top:10px">CLIP류 이미지 생성 모델의 77토큰 하드컷과 다르다. 시댄스는 LLM 기반 인코더라 9,800자(≈2,400토큰) 전체를 기술적으로 다 읽는다. <b>잘려서 사라지는 게 아니다.</b></p>
+<div class="quote">"Attention layers weigh every token against every other token, and those weights are finite, meaning tokens compete."</div>
+<div class="src">비디오 확산모델 어텐션 연구 종합 (domer.io 등) · 등급 C</div>
+</details>
+<p><b>진짜 실패 메커니즘은 어텐션 희석이다</b> — 토큰이 늘수록 각 지시(제품 크기·손 위치 등)가 받는 관심이 나뉘어 정작 중요한 지시가 옅어진다. 우리가 겪은 "기존 상태 유지 + 새 동작 동시 실행 불가"(30_growth/notes.md 실측)는 이 현상의 우리 버전이다.</p>
+
+<h2 id="q2">③ 버전별 권장 길이 <span class="badge g-B">등급 B</span> <span class="badge g-C">등급 C</span></h2>
+<div class="tablewrap"><table>
+<tr><th>소스</th><th>등급</th><th>대상</th><th>권장</th></tr>
+<tr><td>apiyi.com 2.0 공식 해설</td><td class="badge g-C">C</td><td>Seedance 2.0</td><td>60-100단어. 짧으면 디테일 놓치고 길면 상충 지시</td></tr>
+<tr><td>nemovideo.com</td><td class="badge g-C">C</td><td>Seedance 2.0</td><td>20-60단어 최적, <b>100단어 초과 시 생성실패 빈발</b></td></tr>
+<tr><td>suno.bi</td><td class="badge g-B">B</td><td><b>Seedance 2.5</b></td><td>500-1,500단어(30초 복잡 내러티브) — 단 4단계 구조로 조직됐을 때만</td></tr>
+<tr><td>seedance.tv</td><td class="badge g-B">B</td><td>Seedance 2.5</td><td>단어수 상한 없음 — "정확한 두 문장이 애매한 다섯 문장을 이긴다"</td></tr>
+<tr><td>Kling 공식 API 문서</td><td class="badge g-B">B</td><td>Kling 2.5</td><td>API 상한 2,500자인데 권장은 50-100단어</td></tr>
+<tr><td>OpenAI Sora 2 공식 쿡북</td><td class="badge g-A">A</td><td>Sora 2</td><td>단어수 상한 없음. 긴 프롬프트는 모델의 창의적 해석을 줄이고 항상 안정적으로 따르지 못할 수 있다고 명시 경고</td></tr>
+<tr><td>Runway 공식 도움말</td><td class="badge g-A">A</td><td>Gen-4</td><td>간결한 지시가 최선 — 5~10초 클립 하나당 핵심 동작 하나</td></tr>
+</table></div>
+<p><b>교차 확인:</b> 등급 A(Sora 공식)와 등급 B(Seedance 2.5 전용 두 소스)가 같은 방향을 가리킨다 — 총 길이 자체보다 <b>구조를 지켰는가 + 문장 하나하나가 제 몫을 하는가</b>가 결과를 가른다. 다만 Seedance 2.5는 다른 모델보다 확실히 더 긴 구조적 프롬프트를 허용하는 예외적 모델이다 — "짧을수록 무조건 좋다"는 원 가설도 버전 특정 없이 일반화하면 과장이다.</p>
+
+<h2 id="q3">④ 네거티브 프롬프트, 실제로 작동하는가? <span class="dot dot-red"></span>확정 문제</h2>
+<p><b>없다. 우리 관행이 안티패턴에 가깝다.</b></p>
+<div class="grid2">
+  <div class="box bad">
+    <h4>🔴 지금 우리가 하는 것</h4>
+    <p style="margin:0">편당 1,000~1,800자짜리 "Negative prompt:" 벽을 매번 만들어 붙인다. hand, finger, circle, round loop, oval, letter O... 수십 개 나열.</p>
+  </div>
+  <div class="box good">
+    <h4>🟢 공식 가이드가 말하는 것</h4>
+    <p style="margin:0">"보호해야 할 소수의 항목만 사용하고, 일반적인 부정 문구 벽을 만들지 마세요." (3~5개만)</p>
+  </div>
+</div>
+<details>
+<summary>근거 보기</summary>
+<div class="quote">"Negative phrasing should only be used for subtitle and audio control ('no subtitles,' 'no BGM')." <div class="src">suno.bi, Seedance 2.5 공식계열 가이드 · 등급 B</div></div>
+<div class="quote">"원하는 결과·원치 않는 결과를 생성 전에 정의" — 기술적 채널이 아니라 워크플로 조언일 뿐 <div class="src">Dreamina(ByteDance 자사 앱) 가이드 · 등급 B</div></div>
+<div class="quote">"보호해야 할 소수의 항목만 사용하고, 일반적인 부정 문구 벽을 만들지 마세요." <div class="src">Seedance 2.0 종합 스킬 문서 (github/mqrox) · 등급 C</div></div>
+</details>
+<p>우리 자신의 실측과도 들어맞는다 — 네거티브에 맨 단어 <span class="mono">hand</span>를 넣으면 손이 통째로 사라지는 현상이 있었다. 진짜 negative 채널이었다면 "그 속성만 안 나옴"이어야 하는데, "통째로 사라짐"은 그냥 본문 어딘가에 <span class="mono">hand</span> 토큰이 하나 더 늘어서 생긴 부작용으로 설명된다.</p>
+
+<h2 id="q5">⑤ 참조 이미지가 있으면 외형을 다시 서술해야 하나? <span class="dot dot-red"></span>확정 문제</h2>
+<p><b>아니다 — 반복하지 말라는 게 정본이다.</b></p>
+<div class="quote">"Don't repeat 'a woman in a red dress' if she's already in the photo — say what she does." 참조에 이미 있는 걸 다시 문단으로 쓰고 있다면 지우고 참조를 가리켜라. <div class="src">seedance.tv · 등급 B</div></div>
+<p>우리 UGC 프롬프트 서두("a young woman with curly blonde hair tied up, small hoop earrings...")는 레퍼런스 이미지가 이미 고정하는 외형을 다시 문장으로 그리는 패턴이다 — 이 구간이 그대로 낭비되는 글자 수일 가능성이 높다.</p>
+
+<h2 id="q6">⑥ 타임코드·멀티샷 구조 <span class="dot dot-amber"></span>여지 있음</h2>
+<p>Seedance 2.5는 초 단위 타임스탬프를 잘 따른다는 게 공식계열 가이드 주장(등급 B)이지만, 동시에 2.0 종합 스킬(등급 C)은 "엄격한 타이밍은 불안정할 수 있으므로 샷 순서 우선"이라고 경고한다 — 완전히 일치하진 않는다.</p>
+<p>결정적인 건 ①에서 찾은 1차 소스다: Magnific은 <b><span class="mono">multi_prompt</span>라는 구조화 멀티샷을 이미 지원</b>한다(최대 6샷, 샷별 duration). 지금 우리는 이 기능을 안 쓰고 모든 걸 하나의 <span class="mono">prompt</span> 문자열에 타임코드로 욱여넣는다 — 26초 UGC물은 시점 10구간(중앙값)인데, 이건 멀티샷 한도(6샷)를 이미 넘는다.</p>
+
+<h2 id="audit">우리 프롬프트 점검 — 실측 대조</h2>
+<div class="tablewrap"><table>
+<tr><th>관행</th><th>리서치 결론</th><th>우리 실제</th><th>판정</th></tr>
+<tr><td>총 길이</td><td>구조 있으면 500-1,500단어까지 허용(B)</td><td>1,650-1,700단어·9,800자 — 상한(10,000자)에 거의 붙어 있음</td><td><span class="dot dot-amber"></span>여유 없음</td></tr>
+<tr><td>네거티브 블록</td><td>기술적으로 무의미 + "벽 금지"가 정본(A+B)</td><td>편당 1,000-1,800자 별도 벽</td><td><span class="dot dot-red"></span>안티패턴</td></tr>
+<tr><td>참조 이미지 외형 재서술</td><td>하지 말 것(B)</td><td>매 편 서두에 인물 외형 재서술</td><td><span class="dot dot-red"></span>반복 중</td></tr>
+<tr><td>LOCK / =failed 반복</td><td>"보호할 소수 항목만"(C)</td><td>편당 LOCK 7-12개, =failed 9-16개, 상당수 동어반복</td><td><span class="dot dot-amber"></span>압축 여력 큼</td></tr>
+<tr><td>타임코드 세분화</td><td>초단위는 되지만 "샷 순서 우선"이라는 반대 의견도 있음</td><td>26초를 10구간까지 세분화, 전부 한 문자열</td><td><span class="dot dot-amber"></span>멀티샷 미활용</td></tr>
+<tr><td>스케일 상대 앵커링</td><td>—</td><td>이미 관계 비교(제품 대비 비율) 사용 중</td><td><span class="dot dot-green"></span>정본과 일치</td></tr>
+</table></div>
+
+<h2 id="principles">개선 원칙 5가지</h2>
+<ol>
+  <li><b>네거티브 블록을 없애거나 대폭 줄인다.</b> Seedance는 negativePrompt 필드가 없다 — "Negative prompt:" 벽 대신, 정말 지켜야 할 3-5개 항목(정체성·제품 형태·손가락 개수 등)만 본문 안에 "avoid X" 형태로 녹인다. 자막·오디오 억제("no subtitles", "no music")만 순수 부정형으로 남긴다.</li>
+  <li><b>참조 이미지가 고정하는 외형은 재서술하지 않는다.</b> 인물·제품 생김새는 레퍼런스에 맡기고, 프롬프트는 동작·카메라·타이밍만 쓴다.</li>
+  <li><b>26초 이상 멀티세그먼트 영상은 Magnific <span class="mono">multi_prompt</span>(최대 6샷) 사용을 우선 검토한다.</b> 한 세그먼트가 6개를 넘어야 하면 씬을 더 큰 단위로 합치거나 생성을 나누는 걸 먼저 고려.</li>
+  <li><b>LOCK/=failed 절은 "정말 사고가 난 항목"만 남긴다.</b> 같은 제약의 동의어 반복은 병합.</li>
+  <li><b>압축이 필요할 땐 총 단어수보다 "구조 4단계"가 살아있는가를 기준으로 판단한다.</b> 자산참조 → 한줄요약 → 세그먼트 플롯 → 마감제약. 무작정 문장을 쳐내면 오히려 구조가 깨져 정보 유실이 난다.</li>
+</ol>
+<p><b>적용 순서 제안:</b> 다음 신규 편부터 1~3원칙을 시범 적용 → 결과 비교(같은 씬, 네거티브 有/無 A-B) → 차이가 확인되면 brand-prompt-dna.md LOCK 섹션에 정식 반영.</p>
+
+<h2 id="applied">이미 반영한 것 — 검수 에이전트 업데이트</h2>
+<p>이 리서치 결과는 영상 프롬프트를 생성 전에 검수하는 <span class="mono">seedance-prompt-reviewer</span> 에이전트에 이미 5개 항목(§I, 40~44번)으로 반영해뒀다. 앞으로 영상 프롬프트 검수를 돌리면 자동으로 아래를 걸러낸다.</p>
+<div class="tablewrap"><table>
+<tr><th>번호</th><th>검사 내용</th></tr>
+<tr><td>40</td><td>네거티브 블록이 전체 길이의 15% 이상이거나 범용 금지어 나열이면 지적 — 3~5개 핵심 항목으로 줄이라고 권고</td></tr>
+<tr><td>41</td><td>레퍼런스 이미지가 있는데 외형을 다시 서술하고 있으면 지적</td></tr>
+<tr><td>42</td><td>6구간 넘는 타임코드를 한 문자열에 욱여넣었으면 <span class="mono">multi_prompt</span> 구조 제안</td></tr>
+<tr><td>43</td><td>정밀 타임코드가 5구간 넘으면 샷 순서 서술로 완화 제안</td></tr>
+<tr><td>44</td><td>8,000자 넘는 프롬프트는 "자산참조→한줄요약→세그먼트→마감제약" 4단계 구조 점검, 무작정 압축보다 재구조화 우선</td></tr>
+</table></div>
+
+<h2 id="sources">출처 (등급순)</h2>
+<h3><span class="badge g-A">A</span> 공식 1차</h3>
+<ul>
+  <li>우리 자신의 Magnific video_generate / video_models_list 스키마 조회 (2026-09-28 실측)</li>
+  <li><a href="https://arxiv.org/html/2506.09113v1" target="_blank" rel="noopener">Seedance 1.0 기술보고서 (arXiv 2506.09113)</a></li>
+  <li><a href="https://developers.openai.com/cookbook/examples/sora/sora2_prompting_guide" target="_blank" rel="noopener">OpenAI Sora 2 공식 프롬프트 가이드</a></li>
+  <li><a href="https://help.runwayml.com/hc/en-us/articles/39789879462419-Gen-4-Video-Prompting-Guide" target="_blank" rel="noopener">Runway Gen-4 Video Prompting Guide</a></li>
+</ul>
+<h3><span class="badge g-B">B</span> 모델 전용 가이드</h3>
+<ul>
+  <li><a href="https://suno.bi/en/blog/seedance-2-5-prompt-guide" target="_blank" rel="noopener">The Complete Seedance 2.5 Prompt Guide (suno.bi)</a></li>
+  <li><a href="https://www.seedance.tv/blog/seedance-2-5-prompt-guide" target="_blank" rel="noopener">Seedance 2.5 Prompt Guide (seedance.tv)</a></li>
+  <li><a href="https://dreamina.capcut.com/seedance/seedance-2-5-negative-prompts" target="_blank" rel="noopener">How to Use Negative Prompts in Seedance 2.5 (Dreamina)</a></li>
+  <li><a href="https://akool.com/blog-posts/kling-2-5-video-prompt-guide" target="_blank" rel="noopener">Kling 2.5 Video Prompt Guide</a></li>
+</ul>
+<h3><span class="badge g-C">C</span> 다수 일화 · 벤더 가이드</h3>
+<ul>
+  <li><a href="https://help.apiyi.com/en/seedance-2-0-prompt-guide-video-generation-camera-style-tips-en.html" target="_blank" rel="noopener">Seedance 2.0 Official Prompt Guide 해설 (apiyi.com)</a></li>
+  <li><a href="https://www.nemovideo.com/blog/seedance-2-0-prompt-guide" target="_blank" rel="noopener">Seedance 2.0 Prompt Guide (nemovideo.com)</a></li>
+  <li><a href="https://higgsfield.ai/blog/seedance-2-5-prompting-guide" target="_blank" rel="noopener">Seedance 2.5 Prompting Guide (Higgsfield)</a></li>
+  <li><a href="https://github.com/mqrox/seedance-2.0-prompt-skill/blob/main/build-seedance2-prompts/SKILL.md" target="_blank" rel="noopener">seedance-2.0-prompt-skill SKILL.md (github/mqrox)</a></li>
+  <li><a href="https://domer.io/blog/advanced-prompt-engineering-ai-video-generation" target="_blank" rel="noopener">Advanced Prompt Engineering for AI Video Generation (domer.io)</a></li>
+  <li>Reddit r/Seedance_AI, r/ImagineAiArt 실사용 게시글 (Apify 수집, 2026-09-28)</li>
+</ul>
+
+<div class="foot">
+  사내 참고용 · 검색엔진 비노출 · <a href="../">← 전체 보고서 목록</a>
+</div>
+</main>
+</div>
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  function onScroll(){
+    var y = window.scrollY + 90;
+    var idx = 0;
+    for (var i=0;i<secs.length;i++){ if (secs[i].offsetTop <= y) idx = i; }
+    links.forEach(function(a,i){ a.classList.toggle('active', i===idx); });
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
